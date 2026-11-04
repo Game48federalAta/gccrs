@@ -516,8 +516,15 @@ Lexer::build_token ()
 	  current_column++;
 	  return Token::make (RIGHT_PAREN, loc);
 	case ';':
-	  current_column++;
-	  return Token::make (SEMICOLON, loc);
+	  if (peek_input() != ';')
+	    {
+		  current_column++;
+	      return Token::make (SEMICOLON, loc);
+	    }
+	   else
+	     {
+		   rust_warning_at(loc+1,0,"help: remove this semicolon");
+		 }	
 	case '*':
 	  if (peek_input () == '=')
 	    {
@@ -2654,3 +2661,4 @@ rust_input_source_test ()
 } // namespace selftest
 
 #endif // CHECKING_P
+	
