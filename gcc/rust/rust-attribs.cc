@@ -77,7 +77,7 @@ static const struct attribute_spec::exclusions rust_attr_noreturn_exclusions[]
   //  ATTR_EXCL ("malloc", true, true, true),
   ATTR_EXCL ("pure", true, true, true),
   ATTR_EXCL ("returns_twice", true, true, true),
-  ATTR_EXCL (NULL, false, false, false),
+  ATTR_EXCL (nullptr, false, false, false),
 };
 
 static const struct attribute_spec::exclusions rust_attr_const_pure_exclusions[]
@@ -86,7 +86,7 @@ static const struct attribute_spec::exclusions rust_attr_const_pure_exclusions[]
   ATTR_EXCL ("const", true, true, true),
   ATTR_EXCL ("noreturn", true, true, true),
   ATTR_EXCL ("pure", true, true, true),
-  ATTR_EXCL (NULL, false, false, false)
+  ATTR_EXCL (nullptr, false, false, false)
 };
 
 // clang-format on
@@ -105,30 +105,30 @@ static const attribute_spec grs_langhook_common_attributes[] = {
   ATTR_SPEC ("noreturn", 0, 0, true, false, false, false,
 	     handle_noreturn_attribute, rust_attr_noreturn_exclusions),
   ATTR_SPEC ("leaf", 0, 0, true, false, false, false,
-	     rust_handle_leaf_attribute, NULL),
+	     rust_handle_leaf_attribute, nullptr),
   ATTR_SPEC ("const", 0, 0, true, false, false, false,
 	     rust_handle_const_attribute, rust_attr_const_pure_exclusions),
   ATTR_SPEC ("malloc", 0, 0, true, false, false, false, handle_malloc_attribute,
-	     NULL),
+	     nullptr),
   ATTR_SPEC ("returns_twice", 0, 0, true, false, false, false,
 	     rust_handle_returns_twice_attribute,
 	     attr_returns_twice_exclusions),
   ATTR_SPEC ("pure", 0, 0, true, false, false, false,
 	     rust_handle_pure_attribute, rust_attr_const_pure_exclusions),
   ATTR_SPEC ("nonnull", 0, -1, false, true, true, false,
-	     handle_nonnull_attribute, NULL),
+	     handle_nonnull_attribute, nullptr),
   ATTR_SPEC ("nothrow", 0, 0, true, false, false, false,
-	     rust_handle_nothrow_attribute, NULL),
+	     rust_handle_nothrow_attribute, nullptr),
   ATTR_SPEC ("transaction_pure", 0, 0, false, true, true, false,
-	     handle_transaction_pure_attribute, NULL),
+	     handle_transaction_pure_attribute, nullptr),
   ATTR_SPEC ("no vops", 0, 0, true, false, false, false,
-	     rust_handle_novops_attribute, NULL),
+	     rust_handle_novops_attribute, nullptr),
   ATTR_SPEC ("type generic", 0, 0, false, true, true, false,
-	     handle_type_generic_attribute, NULL),
+	     handle_type_generic_attribute, nullptr),
   ATTR_SPEC ("fn spec", 1, 1, false, true, true, false, handle_fnspec_attribute,
-	     NULL),
+	     nullptr),
   ATTR_SPEC ("omp declare simd", 0, -1, true, false, false, false,
-	     handle_omp_declare_simd_attribute, NULL),
+	     handle_omp_declare_simd_attribute, nullptr),
 };
 
 const scoped_attribute_specs grs_langhook_common_attribute_table

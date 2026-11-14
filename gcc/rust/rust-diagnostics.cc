@@ -137,8 +137,8 @@ expand_message (const char *fmt, va_list ap)
 
 #pragma GCC diagnostic pop
 
-static const char *cached_open_quote = NULL;
-static const char *cached_close_quote = NULL;
+static const char *cached_open_quote = nullptr;
+static const char *cached_close_quote = nullptr;
 
 void
 rust_be_get_quotechars (const char **open_qu, const char **close_qu)
@@ -150,7 +150,7 @@ rust_be_get_quotechars (const char **open_qu, const char **close_qu)
 const char *
 rust_open_quote ()
 {
-  if (cached_open_quote == NULL)
+  if (cached_open_quote == nullptr)
     rust_be_get_quotechars (&cached_open_quote, &cached_close_quote);
   return cached_open_quote;
 }
@@ -158,7 +158,7 @@ rust_open_quote ()
 const char *
 rust_close_quote ()
 {
-  if (cached_close_quote == NULL)
+  if (cached_close_quote == nullptr)
     rust_be_get_quotechars (&cached_open_quote, &cached_close_quote);
   return cached_close_quote;
 }
@@ -232,7 +232,7 @@ public:
     char buffer[6] = {0};
     format_error_code (buffer);
 
-    return concat ("https://doc.rust-lang.org/error-index.html#", buffer, NULL);
+    return concat ("https://doc.rust-lang.org/error-index.html#", buffer, nullptr);
   }
 
 private:
@@ -403,7 +403,7 @@ rust_debug_loc_internal (const location_t location, const char *fmt, ...)
   va_list ap;
 
   va_start (ap, fmt);
-  char *mbuf = NULL;
+  char *mbuf = nullptr;
   int nwr = vasprintf (&mbuf, fmt, ap);
   va_end (ap);
   if (nwr == -1)

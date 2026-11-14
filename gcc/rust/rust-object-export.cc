@@ -86,7 +86,7 @@ rust_write_export_data (const char *bytes, unsigned int size)
 {
   static section *sec;
 
-  if (sec == NULL)
+  if (sec == nullptry)
     {
       gcc_assert (targetm_common.have_named_sections);
       sec = get_section (RUST_EXPORT_SECTION_NAME,
@@ -120,19 +120,19 @@ rust_read_export_data (int fd, off_t offset, char **pbuf, size_t *plen,
   char *buf;
   ssize_t c;
 
-  *pbuf = NULL;
+  *pbuf = nullptr;
   *plen = 0;
 
   sobj = simple_object_start_read (fd, offset, RUST_EXPORT_SEGMENT_NAME,
 				   &errmsg, perr);
-  if (sobj == NULL)
+  if (sobj == nullptr)
     {
       /* If we get an error here, just pretend that we didn't find any
 	 export data.  This is the right thing to do if the error is
 	 that the file was not recognized as an object file.  This
 	 will ignore file I/O errors, but it's not too big a deal
 	 because we will wind up giving some other error later.  */
-      return NULL;
+      return nullptr;
     }
 
   found = simple_object_find_section (sobj, RUST_EXPORT_SECTION_NAME,
@@ -148,7 +148,7 @@ rust_read_export_data (int fd, off_t offset, char **pbuf, size_t *plen,
     }
 
   buf = XNEWVEC (char, sec_length);
-  if (buf == NULL)
+  if (buf == nullptr)
     {
       *perr = errno;
       return _ ("memory allocation failed while reading export data");
@@ -171,5 +171,5 @@ rust_read_export_data (int fd, off_t offset, char **pbuf, size_t *plen,
   *pbuf = buf;
   *plen = sec_length;
 
-  return NULL;
+  return nullptr;
 }
